@@ -4,6 +4,10 @@ import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core'
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderResult, NativeGeocoderOptions } from '@ionic-native/native-geocoder/ngx';
 
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { CrudService } from '../services/crud.service';
+
 declare var google;
 
 @Component({
@@ -12,6 +16,7 @@ declare var google;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  todoForm: FormGroup;
   
   @ViewChild('map',  {static: false}) mapElement: ElementRef;
   map: any;
@@ -26,6 +31,9 @@ export class HomePage implements OnInit {
 
  
   constructor(
+    private crudService: CrudService,
+    public formBuilder: FormBuilder,
+    private router: Router,
     private geolocation: Geolocation,
     private nativeGeocoder: NativeGeocoder,    
     public zone: NgZone,
@@ -37,7 +45,11 @@ export class HomePage implements OnInit {
  
   //CARGAMOS EL MAPA EN ONINIT
   ngOnInit() {
-    this.loadMap();    
+    this.loadMap();   
+    this.todoForm = this.formBuilder.group({
+      name: [''],
+      place: [''],
+    }); 
   }
 
   //CARGAR EL MAPA TIENE DOS PARTES 
@@ -132,6 +144,23 @@ export class HomePage implements OnInit {
   //EJEMPLO PARA IR A UN LUGAR DESDE UN LINK EXTERNO, ABRIR GOOGLE MAPS PARA DIRECCIONES. 
   GoTo(){
     return window.location.href = 'https://www.google.com/maps/search/?api=1&query=Google&query_place_id='+this.placeid;
+  }
+
+
+  onSubmit() {
+    if (!this.todoForm.valid) {
+      return false;
+    } else {
+      this.crudService
+        .create(this.todoForm.value)
+        .then(() => {
+          this.todoForm.reset();
+          this.router.navigate(['/todo-list']);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
 }
