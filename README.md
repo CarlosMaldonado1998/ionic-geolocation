@@ -6,5 +6,5 @@ Importante agregar sus credenciales proporcionadas por Firebase en los siguiente
 	src/index.html 
 	
 Al iniciar el proyecto podra visualizar las siguientes pantallas: 
-(https://raw.githubusercontent.com/CarlosMaldonado1998/ionic-geolocation/images/ingresar.png)
+![alt text](https://raw.githubusercontent.com/CarlosMaldonado1998/ionic-geolocation/images/ingresar.png)
 	
