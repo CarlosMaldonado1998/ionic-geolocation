@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 export class TODO {
   $key: string;
   name: string;
-  title: string;
   latitud: string;
   longitud: string;
 }
@@ -18,22 +17,22 @@ export class TODO {
 
 export class CrudService {
   constructor(private ngFirestore: AngularFirestore, private router: Router) {}
-  
+
   create(todo: TODO) {
-    return this.ngFirestore.collection('cards').add(todo);
+    return this.ngFirestore.collection('positions').add(todo);
   }
 
   getTasks() {
-    return this.ngFirestore.collection('cards').snapshotChanges();
+    return this.ngFirestore.collection('positions').snapshotChanges();
   }
-  
+
   getTask(id) {
-    return this.ngFirestore.collection('cards').doc(id).valueChanges();
+    return this.ngFirestore.collection('positions').doc(id).valueChanges();
   }
 
   update(id, todo: TODO) {
     this.ngFirestore
-      .collection('cards')
+      .collection('positions')
       .doc(id)
       .update(todo)
       .then(() => {
@@ -43,6 +42,6 @@ export class CrudService {
   }
 
   delete(id: string) {
-    this.ngFirestore.doc('cards/' + id).delete();
+    this.ngFirestore.doc('positions/' + id).delete();
   }
 }

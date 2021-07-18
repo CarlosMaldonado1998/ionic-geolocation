@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>todo-list</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
   <div >
@@ -12,15 +8,12 @@
       </div>
       <ion-item *ngFor="let task of Tasks" >
         <ion-card>
-          <img src="{{task.category}}" />
           <ion-card-header>
             <ion-card-subtitle>{{task.name}}</ion-card-subtitle>
-            <ion-card-title>{{task.title}}</ion-card-title>
+            <ion-card-title>Latitud: {{task.latitud}}</ion-card-title>
+            <ion-card-title>Longitud: {{task.longitud}}</ion-card-title>
           </ion-card-header>
-          <div class="ion-text-center">
-            <ion-button [routerLink]="['/update-todo/', task.id]">
-              <ion-icon name="create"></ion-icon>Editar
-            </ion-button>
+          <div class="ion-text-center">>
             <ion-button clear (click)="remove(task.id)">
               <ion-icon name="trash"></ion-icon> Eliminar
             </ion-button>
@@ -29,5 +22,5 @@
       </ion-item>
     </ion-list>
   </div>
-  
+
 </ion-content>
