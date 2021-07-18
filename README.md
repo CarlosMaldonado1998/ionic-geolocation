@@ -11,7 +11,7 @@ Al iniciar el proyecto podra visualizar las siguientes pantallas:
 
 ![alt text](https://raw.githubusercontent.com/CarlosMaldonado1998/ionic-geolocation/master/images/mapa.png)
 
-Luego en la pantalla con el mapa puede obtener la información de su ubicación. 
+Luego en la pantalla con el mapa, con el boton informativo puede obtener la coordenadas de su ubicación. 
 
 ![alt text](https://raw.githubusercontent.com/CarlosMaldonado1998/ionic-geolocation/master/images/ubicaciòn.png)
 
